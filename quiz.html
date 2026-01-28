@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roommate Compatibility Quiz | Happy Valley</title>
+    <link rel="stylesheet" href="quiz-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="quiz-header">
+        <div class="container">
+            <a href="index.html" class="back-link">← Back to Happy Valley</a>
+            <h1>🏠 Are You Our Perfect Roommate?</h1>
+            <p class="quiz-subtitle">Take this quiz and find out if we're a match!</p>
+        </div>
+    </header>
+
+    <div class="quiz-container">
+        <!-- Quiz Questions Section -->
+        <div class="quiz-section" id="quizSection">
+            <div class="container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <p class="progress-text" id="progressText">Question 1 of 8</p>
+
+                <form id="quizForm">
+                    <!-- Question 1 -->
+                    <div class="question-card" id="question-0">
+                        <div class="question-image">
+                            <img src="images/quiz-images/sleep.jpg" alt="Bedroom">
+                        </div>
+                        <h2>What's your sleep schedule like?</h2>
+                        <div class="answers">
+                            <label class="answer-option">
+                                <input type="radio" name="q1" value="great" required>
+                                <span class="option-text">Early bird ☀️ (Up before 9am, asleep by 11pm)</span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="q1" value="good">
+                                <span class="option-text">Moderate 🌙 (Flexible, usually sleeping by midnight)</span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="q1" value="okay">
+                                <span class="option-text">Night owl 🦉 (Late nights, sleeping in)</span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="q1" value="bad">
+                                <span class="option-text">All over the place (Sleep schedule? Never heard of it)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Question 2 -->
+                    <div class="question-card" id="question-1" style="display: none;">
+                        <div class="question-image">
+                            <img src="images/quiz-images/partners.jpg" alt="Room vibes">
+                        </div>
+                        <h2>Do you have a significant other we should know about?</h2>
+                        <div class="answers">
+                            <label class="answer-option">
+                                <input type="radio" name="q2" value="great" required>
+                                <span class="option-text">Nope, flying solo ✈️</span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="q2" value="good">
+                                <span class="option-text">Yes, but they don't live here</span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="q2" value="okay">
+                                <span class="option-text">Yes, they'd probably be over a lot</span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="q2" value="bad">
+                                <span class="option-text">Yes, they'd basically live here too</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Question 3 -->
+                    <div class="question-card" id="question-2" style="display: none;">
+                        <div class="question-image">
+                            <img src="images/quiz-images/people-over.jpeg" alt="People over">
+                        </div>
+                        <h2>How often do you have people over?</h2>
+                        <div class="answers">
+                            <label class="answer-option">
+                                <input type="radio" name="q3" value="great" required>
+                                <span class="option-text">Rarely, I value quiet time 🤫</span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="q3" value="good">
+                                <span class="option-text">Sometimes, like once a week or less</span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="q3" value="okay">
+                                <span class="option-text">Pretty often, multiple times a week</span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="q3" value="bad">
+                                <span class="option-text">Constantly! I love having people around 🎉</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Question 4 -->
+                    <div class="question-card" id="question-3" style="display: none;">
+                        <div class="question-image">
+                            <img src="images/quiz-images/cleaning.jpg" alt="Kitchen space">
+                        </div>
+                        <h2>Tell us about your dish/cleaning approach:</h2>
+                        <div class="answers">
+                            <label class="answer-option">
+                                <input type="radio" name="q4" value="great" required>
+                                <span class="option-text">I do dishes right after eating 🧼</span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="q4" value="good">
+                                <span class="option-text">I clean within a day or so</span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="q4" value="okay">
+                                <span class="option-text">Eventually... I'll get to it</span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="q4" value="bad">
+                                <span class="option-text">Dishes? That's what the sink is for 😅</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Question 5 -->
+                    <div class="question-card" id="question-4" style="display: none;">
+                        <div class="question-image">
+                            <img src="images/quiz-images/chores.jpg" alt="Chores">
+                        </div>
+                        <h2>How do you manage chores & responsibilities?</h2>
+                        <div class="answers">
+                            <label class="answer-option">
+                                <input type="radio" name="q5" value="great" required>
+                                <span class="option-text">I stay on top of it, very organized ✅</span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="q5" value="good">
+                                <span class="option-text">I do my share, no problem</span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="q5" value="okay">
+                                <span class="option-text">I do it eventually, need reminders sometimes</span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="q5" value="bad">
+                                <span class="option-text">Honestly? I'm pretty scattered</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Question 6 -->
+                    <div class="question-card" id="question-5" style="display: none;">
+                        <div class="question-image">
+                            <img src="images/quiz-images/conflict.jpg" alt="Conflict">
+                        </div>
+                        <h2>How do you deal with conflict?</h2>
+                        <div class="answers">
+                            <label class="answer-option">
+                                <input type="radio" name="q6" value="great" required>
+                                <span class="option-text">Direct & honest conversation 💬</span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="q6" value="good">
+                                <span class="option-text">I bring it up, but gently</span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="q6" value="okay">
+                                <span class="option-text">I avoid conflict for a while, then explode</span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="q6" value="bad">
+                                <span class="option-text">I just pretend nothing's wrong</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Question 8 - REMOVED (was duplicate cleaning question) -->
+
+                    <!-- Question 7 -->
+                    <div class="question-card" id="question-6" style="display: none;">
+                        <div class="question-image">
+                            <img src="images/quiz-images/rent.jpg" alt="Rent payment">
+                        </div>
+                        <h2>Have you had difficulty paying rent on time?</h2>
+                        <div class="answers">
+                            <label class="answer-option">
+                                <input type="radio" name="q7" value="great" required>
+                                <span class="option-text">Never! Always on time 💰</span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="q7" value="good">
+                                <span class="option-text">Occasionally a few days late, but it's fine</span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="q7" value="okay">
+                                <span class="option-text">Yeah, sometimes it's been tight</span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="q7" value="bad">
+                                <span class="option-text">Uhh, can we not talk about this?</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Question 8 -->
+                    <div class="question-card" id="question-7" style="display: none;">
+                        <div class="question-image">
+                            <img src="images/quiz-images/smoking.jpg" alt="Smoking policy">
+                        </div>
+                        <h2>Do you smoke or vape?</h2>
+                        <div class="answers">
+                            <label class="answer-option">
+                                <input type="radio" name="q8" value="great" required>
+                                <span class="option-text">Don't smoke, totally fine with the rule ✨</span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="q8" value="okay" required>
+                                <span class="option-text">I vape sometimes but respect boundaries</span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="q8" value="bad" required>
+                                <span class="option-text">I smoke and need to do it at home</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="quiz-buttons">
+                        <button type="button" id="prevBtn" class="btn-nav btn-secondary" style="display: none;">← Previous</button>
+                        <button type="button" id="nextBtn" class="btn-nav btn-primary">Next →</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results-section" id="resultsSection" style="display: none;">
+            <div class="container">
+                <div class="result-card" id="resultCard">
+                    <!-- Results will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="quiz-script.js"></script>
+</body>
+</html>
+
