@@ -25,6 +25,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 50px;
 }
 
 body {
@@ -335,7 +336,21 @@ a:hover {
 /* ============ ABOUT SECTION ============ */
 .about {
     padding: 60px 20px;
-    background-color: var(--bg-light);
+    background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.about::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    right: 5%;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(201, 70, 160, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
 }
 
 .about-content {
@@ -343,11 +358,17 @@ a:hover {
     grid-template-columns: 1fr 1fr;
     gap: 50px;
     align-items: start;
+    position: relative;
+    z-index: 1;
 }
 
 .about h2 {
     font-size: 2.2rem;
     margin-bottom: 25px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent-purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .about-text p {
@@ -718,19 +739,40 @@ a:hover {
 /* ============ GALLERY SECTION ============ */
 .gallery-section {
     padding: 60px 20px;
-    background: linear-gradient(135deg, rgba(217, 70, 239, 0.08) 0%, rgba(201, 70, 160, 0.08) 100%);
+    background: linear-gradient(135deg, rgba(217, 70, 239, 0.12) 0%, rgba(201, 70, 160, 0.12) 50%, rgba(232, 166, 216, 0.08) 100%);
+    position: relative;
+}
+
+.gallery-section::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: 10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 105, 180, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
 }
 
 .gallery-section h2 {
     font-size: 2.2rem;
     text-align: center;
     margin-bottom: 40px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent-purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    z-index: 1;
 }
 
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
+    position: relative;
+    z-index: 1;
 }
 
 .gallery-grid img {
@@ -738,14 +780,16 @@ a:hover {
     height: 220px;
     object-fit: cover;
     border-radius: 15px;
-    box-shadow: 0 6px 20px rgba(201, 70, 160, 0.15);
-    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(201, 70, 160, 0.2), 0 0 40px rgba(217, 70, 239, 0.1);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     cursor: pointer;
+    border: 3px solid transparent;
 }
 
 .gallery-grid img:hover {
-    transform: scale(1.05) translateY(-5px);
-    box-shadow: 0 10px 30px rgba(201, 70, 160, 0.25);
+    transform: scale(1.08) translateY(-8px) rotateZ(1deg);
+    box-shadow: 0 15px 40px rgba(201, 70, 160, 0.3), 0 0 60px rgba(217, 70, 239, 0.15);
+    border-color: rgba(232, 166, 216, 0.4);
 }
 
 /* ============ LIGHTBOX ============ */
@@ -948,13 +992,33 @@ a:hover {
 /* ============ LOOKING FOR SECTION ============ */
 .looking-for {
     padding: 60px 20px;
-    background: linear-gradient(135deg, var(--bg-light) 0%, rgba(232, 166, 216, 0.08) 100%);
+    background: linear-gradient(135deg, var(--bg-light) 0%, rgba(232, 166, 216, 0.12) 50%, rgba(217, 70, 239, 0.08) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.looking-for::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: 15%;
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, rgba(255, 105, 180, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
 }
 
 .looking-for h2 {
     font-size: 2.2rem;
     text-align: center;
     margin-bottom: 15px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent-purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    z-index: 1;
 }
 
 .requirements {
@@ -962,19 +1026,49 @@ a:hover {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 25px;
     margin: 45px 0;
+    position: relative;
+    z-index: 1;
 }
 
 .req-item {
-    background-color: var(--white);
+    background: linear-gradient(135deg, var(--white) 0%, var(--bg-light) 100%);
     padding: 30px;
     border-radius: 15px;
-    border-left: 4px solid var(--primary);
+    border-left: 5px solid var(--primary);
+    box-shadow: 0 4px 15px rgba(201, 70, 160, 0.08);
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.req-item::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(217, 70, 239, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+    transition: all 0.6s ease;
 }
 
 .req-item:hover {
-    transform: translateX(5px);
-    box-shadow: 0 8px 20px rgba(201, 70, 160, 0.12);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(201, 70, 160, 0.2);
+    border-left-color: var(--accent-purple);
+}
+
+.req-item:hover::before {
+    top: -30%;
+    right: -20%;
+}
+
+.req-item h4,
+.req-item p {
+    position: relative;
+    z-index: 1;
 }
 
 .req-item h4 {

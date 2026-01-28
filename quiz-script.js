@@ -240,32 +240,46 @@ function showResults() {
         resultHTML += '</div>';
     }
 
-    // CTA
-    if (resultType === 'perfect' || resultType === 'great' || resultType === 'okay') {
-        resultHTML += `
-            <div class="result-cta">
-                <p style="font-size: 1rem; color: var(--text-dark); margin-bottom: 10px;">Great news—we think you could be a fit! Let's chat and see if the vibe is as good as we think. 💬</p>
-                <a href="tel:206-981-8327" class="cta-button cta-primary">📱 Text/Call: 206-981-8327</a>
-                <a href="https://instagram.com/char.lotte.anne" target="_blank" class="cta-button cta-secondary">📸 DM: @char.lotte.anne</a>
-                <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 15px;">👈 Texting is fastest! Just say hi and tell us a little about yourself.</p>
+    // CTA - Only show share results section
+    resultHTML += `
+        <div style="margin-top: 40px; padding-top: 30px; border-top: 2px solid var(--border-color);">
+            <h3 style="font-size: 1.1rem; margin-bottom: 20px; color: var(--text-dark);">Share Your Results:</h3>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <button id="shareTextBtn" class="cta-button cta-secondary" style="background: #4CAF50; border-color: #4CAF50; color: white; border: none; cursor: pointer;">💬 Text Results</button>
+                <a href="https://instagram.com/char.lotte.anne" target="_blank" class="cta-button cta-secondary" style="background: #E1306C; border-color: #E1306C; color: white;">📸 DM Results</a>
             </div>
-        `;
-    } else {
-        resultHTML += `
-            <div class="result-cta">
-                <p style="font-size: 1rem; color: var(--text-dark); margin-bottom: 20px;">If you have questions or want to chat anyway, we're totally open to it. But we want to be honest about compatibility.</p>
-                <a href="tel:206-981-8327" class="cta-button cta-secondary">📱 Reach Out: 206-981-8327</a>
-            </div>
-        `;
-    }
+            <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 12px; text-align: center;">Share your compatibility score and tell Charlotte about your results! 🎯</p>
+        </div>
+    `;
 
     resultHTML += `
-        <div style="margin-top: 40px;">
+        <div style="margin-top: 30px;">
             <a href="index.html" class="cta-button" style="background-color: var(--bg-light); color: var(--primary); border: 2px solid var(--primary); display: inline-block;">← Back to Happy Valley</a>
         </div>
     `;
 
     resultCard.innerHTML = resultHTML;
+
+    // Add event listener for share text button
+    document.getElementById('shareTextBtn').addEventListener('click', function() {
+        let resultMessage = '';
+        if (resultType === 'perfect') {
+            resultMessage = `Hey! I got a ${score}% compatibility score on your roommate quiz! 🎉 We're basically the same person! Would love to chat!`;
+        } else if (resultType === 'great') {
+            resultMessage = `Hey! I got a ${score}% compatibility score on your roommate quiz! ✨ I think we'd be a great fit! Would love to chat!`;
+        } else if (resultType === 'okay') {
+            resultMessage = `Hey! I got a ${score}% compatibility score on your roommate quiz! 🤔 Let's talk about compatibility! Would love to chat!`;
+        } else {
+            resultMessage = `Hey! I got a ${score}% compatibility score on your roommate quiz! 💭 Check out my results!`;
+        }
+        
+        // Encode the message for SMS
+        const encodedMessage = encodeURIComponent(resultMessage);
+        const smsLink = `sms:206-981-8327?body=${encodedMessage}`;
+        
+        // Open SMS app
+        window.location.href = smsLink;
+    });
 
     // Show results, hide quiz
     quizSection.style.display = 'none';
