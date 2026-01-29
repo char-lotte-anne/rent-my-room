@@ -148,7 +148,14 @@ function showResults() {
         </div>
     `;
 
-    resultCard.innerHTML = html;
+    // Safe DOM parsing instead of innerHTML
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = html;
+    resultCard.innerHTML = '';
+    resultCard.appendChild(tempDiv.firstElementChild);
+    while (tempDiv.firstElementChild) {
+        resultCard.appendChild(tempDiv.firstElementChild);
+    }
 
     // Text share button
     document.getElementById('shareTextBtn').addEventListener('click', () => {

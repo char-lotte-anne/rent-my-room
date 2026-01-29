@@ -88,7 +88,23 @@ python3 -m http.server 8000
 - **Links dead**: Check phone format, Instagram URL is public
 - **JS errors**: Open console (F12), check file paths are correct
 
-## 🔄 Updating
+## 🔒 Security
+
+- **No external API calls** - All data is client-side
+- **No user data collection** - Quiz results never leave user's device
+- **No cookies or tracking** - HTTPS recommended for deployment
+- **Sanitized content** - All HTML generated from trusted internal strings
+- **CSP ready** - Can add Content-Security-Policy headers via Vercel config
+
+### Best Practices Implemented
+
+- ✅ HTTPS on Vercel (automatic)
+- ✅ No sensitive data in localStorage
+- ✅ Form validation client-side
+- ✅ No external script dependencies
+- ✅ Escape user input (SMS encoding with `encodeURIComponent`)
+
+
 
 ```bash
 # Make changes locally
