@@ -178,5 +178,3 @@ if (phoneContactBtn && phoneMenu) {
         item.addEventListener('click', () => { phoneMenu.style.display = 'none'; });
     });
 }
-
-// please work
