@@ -102,11 +102,11 @@ function showResults() {
     const resultType = getResultType();
     const { strengths, concerns } = getAnalysis();
     
-    let imageSrc = 'images/quiz-images/bad-quiz-result.jpg';
+    let imageSrc = '/images/quiz-images/bad-quiz-result.jpg';
     if (resultType === 'perfect' || resultType === 'great') {
-        imageSrc = 'images/quiz-images/good-quiz-result.jpg';
+        imageSrc = '/images/quiz-images/good-quiz-result.jpg';
     } else if (resultType === 'okay') {
-        imageSrc = 'images/quiz-images/okay-quiz-result.jpg';
+        imageSrc = '/images/quiz-images/okay-quiz-result.jpg';
     }
     
     let html = `<img src="${imageSrc}" alt="Quiz result" class="result-badge ${resultType}">`;
@@ -116,13 +116,13 @@ function showResults() {
             <p class="result-description">Your answers are basically Charlotte's. You get this vibe. This is exactly what we're looking for. Let's make this happen. 💕</p>`;
     } else if (resultType === 'great') {
         html += `<h2 class="result-title">✨ We Think You're a Great Fit!</h2>
-            <p class="result-description">You're really aligned with how we live. Small differences, but core values match. Charlotte has a good feeling about you—let's talk!</p>`;
+            <p class="result-description">You're really aligned with how we live. Small differences, but core values match. We have a good feeling about you—let's talk!</p>`;
     } else if (resultType === 'okay') {
         html += `<h2 class="result-title">🤔 We Could Make This Work</h2>
             <p class="result-description">Not a perfect match, but not far off. There are differences, but we're open to a conversation. Let's see if we can find common ground.</p>`;
     } else {
         html += `<h2 class="result-title">💭 Probably Not the Best Fit</h2>
-            <p class="result-description">We appreciate you taking the quiz! But our living styles are different. Charlotte was intentional about finding someone similar. We want everyone happy. Good luck! 💕</p>`;
+            <p class="result-description">We appreciate you taking the quiz! But our living styles are different. We are intentional about finding someone similar. We want everyone happy. Good luck! 💕</p>`;
     }
 
     html += `<div class="result-score-label">Compatibility Score</div><div class="result-score">${score}%</div>`;
