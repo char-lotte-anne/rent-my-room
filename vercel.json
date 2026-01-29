@@ -1,7 +1,6 @@
 {
-  "buildCommand": "echo 'Static site, no build needed'",
-  "installCommand": "echo 'No installation needed'",
-  "framework": "static",
+  "buildCommand": "",
+  "installCommand": "",
   "public": true,
   "cleanUrls": true,
   "trailingSlash": false,
@@ -23,12 +22,6 @@
           "value": "public, max-age=31536000, immutable"
         }
       ]
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/(.*).html",
-      "destination": "/$1.html"
     }
   ]
 }
