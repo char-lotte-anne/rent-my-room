@@ -1023,9 +1023,15 @@ a:hover {
         right: 10px;
     }
 
+@media (max-width: 768px) {
     .zoom-btn {
         padding: 6px 10px;
         font-size: 0.9rem;
+        display: none;
+    }
+
+    #zoom-level {
+        display: none;
     }
 }
 
