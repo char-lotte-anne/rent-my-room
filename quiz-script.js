@@ -102,71 +102,168 @@ function showResults() {
     const resultType = getResultType();
     const { strengths, concerns } = getAnalysis();
     
-    let imageSrc = '/images/quiz-images/bad-quiz-result.jpg';
+    let imageSrc = 'images/quiz-images/bad-quiz-result.jpg';
     if (resultType === 'perfect' || resultType === 'great') {
-        imageSrc = '/images/quiz-images/good-quiz-result.jpg';
+        imageSrc = 'images/quiz-images/good-quiz-result.jpg';
     } else if (resultType === 'okay') {
-        imageSrc = '/images/quiz-images/okay-quiz-result.jpg';
-    }
-    
-    let html = `<img src="${imageSrc}" alt="Quiz result" class="result-badge ${resultType}">`;
-
-    if (resultType === 'perfect') {
-        html += `<h2 class="result-title">🎉 OMG YES! This Is It!</h2>
-            <p class="result-description">Your answers are basically Charlotte's. You get this vibe. This is exactly what we're looking for. Let's make this happen. 💕</p>`;
-    } else if (resultType === 'great') {
-        html += `<h2 class="result-title">✨ We Think You're a Great Fit!</h2>
-            <p class="result-description">You're really aligned with how we live. Small differences, but core values match. We have a good feeling about you—let's talk!</p>`;
-    } else if (resultType === 'okay') {
-        html += `<h2 class="result-title">🤔 We Could Make This Work</h2>
-            <p class="result-description">Not a perfect match, but not far off. There are differences, but we're open to a conversation. Let's see if we can find common ground.</p>`;
-    } else {
-        html += `<h2 class="result-title">💭 Probably Not the Best Fit</h2>
-            <p class="result-description">We appreciate you taking the quiz! But our living styles are different. We are intentional about finding someone similar. We want everyone happy. Good luck! 💕</p>`;
+        imageSrc = 'images/quiz-images/okay-quiz-result.jpg';
     }
 
-    html += `<div class="result-score-label">Compatibility Score</div><div class="result-score">${score}%</div>`;
-
-    if (strengths.length > 0 || concerns.length > 0) {
-        html += '<div class="result-details">';
-        if (strengths.length > 0) {
-            html += '<h3>✓ What We Love:</h3><ul>';
-            strengths.forEach(s => html += `<li>${s}</li>`);
-            html += '</ul>';
-        }
-        if (concerns.length > 0) {
-            html += '<h3>⚠ Things to Discuss:</h3><ul>';
-            concerns.forEach(c => html += `<li class="concern">${c}</li>`);
-            html += '</ul>';
-        }
-        html += '</div>';
-    }
-
-    html += `
-        <div style="margin-top: 40px; padding-top: 30px; border-top: 2px solid var(--border-color);">
-            <h3 style="font-size: 1.1rem; margin-bottom: 20px; color: var(--text-dark);">Share Your Results:</h3>
-            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                <button id="shareTextBtn" class="cta-button cta-secondary" style="background: #4CAF50; border-color: #4CAF50; color: white; border: none; cursor: pointer;">💬 Text Results</button>
-                <a href="https://instagram.com/char.lotte.anne" target="_blank" class="cta-button cta-secondary" style="background: #E1306C; border-color: #E1306C; color: white;">📸 DM Results</a>
-            </div>
-            <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 12px; text-align: center;">Share your score and tell Charlotte about your results! 🎯</p>
-        </div>
-        <div style="margin-top: 30px;">
-            <a href="index.html" class="cta-button" style="background-color: var(--bg-light); color: var(--primary); border: 2px solid var(--primary); display: inline-block;">← Back to Happy Valley</a>
-        </div>
-    `;
-
-    // Safe DOM parsing instead of innerHTML
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = html;
+    // Clear result card
     resultCard.innerHTML = '';
-    resultCard.appendChild(tempDiv.firstElementChild);
-    while (tempDiv.firstElementChild) {
-        resultCard.appendChild(tempDiv.firstElementChild);
+
+    // Create image element
+    const img = document.createElement('img');
+    img.src = imageSrc;
+    img.alt = 'Quiz result';
+    img.className = `result-badge ${resultType}`;
+    resultCard.appendChild(img);
+
+    // Create title and description
+    let titleText = '', descText = '';
+    if (resultType === 'perfect') {
+        titleText = '🎉 OMG YES! This Is It!';
+        descText = 'Your answers are basically Charlotte\'s. You get this vibe. This is exactly what we\'re looking for. Let\'s make this happen. 💕';
+    } else if (resultType === 'great') {
+        titleText = '✨ We Think You\'re a Great Fit!';
+        descText = 'You\'re really aligned with how we live. Small differences, but core values match. We have a good feeling about you—let\'s talk!';
+    } else if (resultType === 'okay') {
+        titleText = '🤔 We Could Make This Work';
+        descText = 'Not a perfect match, but not far off. There are differences, but we\'re open to a conversation. Let\'s see if we can find common ground.';
+    } else {
+        titleText = '💭 Probably Not the Best Fit';
+        descText = 'We appreciate you taking the quiz! But our living styles are different. We are intentional about finding someone similar. We want everyone happy. Good luck! 💕';
     }
 
-    // Text share button
-    document.getElementById('shareTextBtn').addEventListener('click', () => {
+    const title = document.createElement('h2');
+    title.className = 'result-title';
+    title.textContent = titleText;
+    resultCard.appendChild(title);
+
+    const desc = document.createElement('p');
+    desc.className = 'result-description';
+    desc.textContent = descText;
+    resultCard.appendChild(desc);
+
+    // Score
+    const scoreLabel = document.createElement('div');
+    scoreLabel.className = 'result-score-label';
+    scoreLabel.textContent = 'Compatibility Score';
+    resultCard.appendChild(scoreLabel);
+
+    const scoreValue = document.createElement('div');
+    scoreValue.className = 'result-score';
+    scoreValue.textContent = score + '%';
+    resultCard.appendChild(scoreValue);
+
+    // Details
+    if (strengths.length > 0 || concerns.length > 0) {
+        const details = document.createElement('div');
+        details.className = 'result-details';
+
+        if (strengths.length > 0) {
+            const strengthsHeader = document.createElement('h3');
+            strengthsHeader.textContent = '✓ What We Love:';
+            details.appendChild(strengthsHeader);
+
+            const strengthsList = document.createElement('ul');
+            strengths.forEach(s => {
+                const li = document.createElement('li');
+                li.textContent = s;
+                strengthsList.appendChild(li);
+            });
+            details.appendChild(strengthsList);
+        }
+
+        if (concerns.length > 0) {
+            const concernsHeader = document.createElement('h3');
+            concernsHeader.textContent = '⚠ Things to Discuss:';
+            details.appendChild(concernsHeader);
+
+            const concernsList = document.createElement('ul');
+            const topConcerns = concerns.slice(0, 3);
+            topConcerns.forEach(c => {
+                const li = document.createElement('li');
+                li.className = 'concern';
+                li.textContent = c;
+                concernsList.appendChild(li);
+            });
+            details.appendChild(concernsList);
+        }
+
+        resultCard.appendChild(details);
+    }
+
+    // Share section
+    const shareDiv = document.createElement('div');
+    shareDiv.style.marginTop = '40px';
+    shareDiv.style.paddingTop = '30px';
+    shareDiv.style.borderTop = '2px solid var(--border-color)';
+
+    const shareTitle = document.createElement('h3');
+    shareTitle.style.fontSize = '1.1rem';
+    shareTitle.style.marginBottom = '20px';
+    shareTitle.style.color = 'var(--text-dark)';
+    shareTitle.textContent = 'Share Your Results:';
+    shareDiv.appendChild(shareTitle);
+
+    const buttonContainer = document.createElement('div');
+    buttonContainer.style.display = 'flex';
+    buttonContainer.style.gap = '15px';
+    buttonContainer.style.justifyContent = 'center';
+    buttonContainer.style.flexWrap = 'wrap';
+
+    const textBtn = document.createElement('button');
+    textBtn.id = 'shareTextBtn';
+    textBtn.className = 'cta-button cta-secondary';
+    textBtn.style.background = '#4CAF50';
+    textBtn.style.borderColor = '#4CAF50';
+    textBtn.style.color = 'white';
+    textBtn.style.border = 'none';
+    textBtn.style.cursor = 'pointer';
+    textBtn.textContent = '💬 Text Results';
+
+    const dmLink = document.createElement('a');
+    dmLink.href = 'https://instagram.com/char.lotte.anne';
+    dmLink.target = '_blank';
+    dmLink.className = 'cta-button cta-secondary';
+    dmLink.style.background = '#E1306C';
+    dmLink.style.borderColor = '#E1306C';
+    dmLink.style.color = 'white';
+    dmLink.textContent = '📸 DM Results';
+
+    buttonContainer.appendChild(textBtn);
+    buttonContainer.appendChild(dmLink);
+    shareDiv.appendChild(buttonContainer);
+
+    const shareNote = document.createElement('p');
+    shareNote.style.fontSize = '0.85rem';
+    shareNote.style.color = 'var(--text-light)';
+    shareNote.style.marginTop = '12px';
+    shareNote.style.textAlign = 'center';
+    shareNote.textContent = 'Share your score and tell Charlotte about your results! 🎯';
+    shareDiv.appendChild(shareNote);
+
+    resultCard.appendChild(shareDiv);
+
+    // Back button
+    const backDiv = document.createElement('div');
+    backDiv.style.marginTop = '30px';
+
+    const backLink = document.createElement('a');
+    backLink.href = 'index.html';
+    backLink.className = 'cta-button';
+    backLink.style.backgroundColor = 'var(--bg-light)';
+    backLink.style.color = 'var(--primary)';
+    backLink.style.border = '2px solid var(--primary)';
+    backLink.style.display = 'inline-block';
+    backLink.textContent = '← Back to Happy Valley';
+
+    backDiv.appendChild(backLink);
+    resultCard.appendChild(backDiv);
+
+    // Text share button event
+    textBtn.addEventListener('click', () => {
         let msg = '';
         if (resultType === 'perfect') msg = `Hey! I got a ${score}% compatibility score on your roommate quiz! 🎉 We're basically the same person!`;
         else if (resultType === 'great') msg = `Hey! I got a ${score}% compatibility score! ✨ I think we'd be a great fit!`;
