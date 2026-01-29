@@ -1,0 +1,28 @@
+# OS files
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Image formats to exclude (use JPG instead for web)
+*.HEIC
+*.heic
+
+# Node (if you add Node later)
+node_modules/
+.env.local
+.env.*.local
+
+# Build files
+dist/
+build/
+
+# OS-specific
+.Spotlight-V100
+.Trashes
