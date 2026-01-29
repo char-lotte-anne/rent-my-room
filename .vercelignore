@@ -38,3 +38,4 @@ Thumbs.db
 *.temp
 .cache/
 # Trigger fresh build
+# Deploy fix
