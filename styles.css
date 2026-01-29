@@ -600,6 +600,17 @@ a:hover {
     margin-bottom: 10px;
 }
 
+.roommate-card p {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+.roommate-card strong {
+    color: var(--primary-dark);
+}
+
 .roommate-detail {
     font-size: 0.9rem;
     color: var(--text-light);
