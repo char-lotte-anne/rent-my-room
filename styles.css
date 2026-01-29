@@ -116,8 +116,14 @@ a:hover {
 
 @media (max-width: 768px) {
     .nav {
-        gap: 15px;
-        font-size: 0.9rem;
+        gap: 12px;
+        font-size: 0.75rem;
+        flex-wrap: wrap;
+    }
+    
+    .nav a {
+        padding: 4px 8px;
+        font-size: 0.75rem;
     }
 }
 
@@ -254,18 +260,31 @@ a:hover {
 @media (max-width: 768px) {
     .hero {
         grid-template-columns: 1fr;
-        padding: 40px 20px;
+        padding: 30px 15px;
+        gap: 20px;
     }
 
     .hero-content h1 {
-        font-size: 2.2rem;
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+
+    .hero .subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 20px;
     }
 
     .hero-cta {
         flex-direction: column;
+        gap: 10px;
     }
 
     .btn {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+        width: 100%;
+    }
+}
         width: 100%;
     }
 
