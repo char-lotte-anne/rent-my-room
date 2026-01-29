@@ -1,40 +1,28 @@
-// Smooth scroll behavior for navigation links
+/* ===== SMOOTH SCROLL ===== */
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 });
 
-// Add scroll animation for elements
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver(function(entries) {
+/* ===== SCROLL ANIMATIONS ===== */
+const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.style.opacity = '1';
             entry.target.style.transform = 'translateY(0)';
         }
     });
-}, observerOptions);
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-document.querySelectorAll('.fact, .feature-item, .roommate-card, .req-item, .process-step').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+document.querySelectorAll('.fact, .feature-item, .req-item, .process-step').forEach(el => {
+    el.style.cssText = 'opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;';
     observer.observe(el);
 });
 
-// ============ LIGHTBOX GALLERY ============
+/* ===== LIGHTBOX GALLERY ===== */
 const galleryImages = document.querySelectorAll('.gallery-image');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-image');
@@ -50,58 +38,47 @@ let currentImageIndex = 0;
 let currentZoom = 100;
 const images = Array.from(galleryImages).map(img => img.src);
 
-// Pan variables
+// Pan state
 let isPanning = false;
-let panX = 0;
-let panY = 0;
-let startX = 0;
-let startY = 0;
-let lastX = 0;
-let lastY = 0;
+let panX = 0, panY = 0, startX = 0, startY = 0, lastX = 0, lastY = 0;
 
-// Open lightbox on image click
+// Open lightbox
 galleryImages.forEach((img, index) => {
     img.addEventListener('click', () => {
         currentImageIndex = index;
         currentZoom = 100;
-        openLightbox();
+        lightbox.classList.add('active');
+        updateLightboxImage();
+        document.body.style.overflow = 'hidden';
     });
 });
 
-function openLightbox() {
-    lightbox.classList.add('active');
-    updateLightboxImage();
-    document.body.style.overflow = 'hidden';
-}
-
+// Close lightbox
 function closeLightbox() {
     lightbox.classList.remove('active');
     document.body.style.overflow = 'auto';
     currentZoom = 100;
-    panX = 0;
-    panY = 0;
+    panX = panY = 0;
 }
 
 function updateLightboxImage() {
-    lightboxImg.src = images[currentImageIndex];
     lightboxImg.style.transform = `scale(${currentZoom / 100}) translate(${panX}px, ${panY}px)`;
     imageCounter.textContent = `${currentImageIndex + 1} / ${images.length}`;
     zoomLevel.textContent = `${currentZoom}%`;
+    lightboxImg.src = images[currentImageIndex];
 }
 
 function nextImage() {
     currentImageIndex = (currentImageIndex + 1) % images.length;
     currentZoom = 100;
-    panX = 0;
-    panY = 0;
+    panX = panY = 0;
     updateLightboxImage();
 }
 
 function prevImage() {
     currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
     currentZoom = 100;
-    panX = 0;
-    panY = 0;
+    panX = panY = 0;
     updateLightboxImage();
 }
 
@@ -111,9 +88,7 @@ function zoomIn() {
         lightboxImg.style.transition = 'none';
         lightboxImg.style.transform = `scale(${currentZoom / 100}) translate(${panX}px, ${panY}px)`;
         zoomLevel.textContent = `${currentZoom}%`;
-        setTimeout(() => {
-            lightboxImg.style.transition = 'transform 0.2s ease';
-        }, 0);
+        setTimeout(() => { lightboxImg.style.transition = 'transform 0.2s ease'; }, 0);
     }
 }
 
@@ -123,27 +98,19 @@ function zoomOut() {
         lightboxImg.style.transition = 'none';
         lightboxImg.style.transform = `scale(${currentZoom / 100}) translate(${panX}px, ${panY}px)`;
         zoomLevel.textContent = `${currentZoom}%`;
-        setTimeout(() => {
-            lightboxImg.style.transition = 'transform 0.2s ease';
-        }, 0);
+        setTimeout(() => { lightboxImg.style.transition = 'transform 0.2s ease'; }, 0);
     }
 }
 
-// Event listeners
+// Lightbox controls
 lightboxClose.addEventListener('click', closeLightbox);
 lightboxPrev.addEventListener('click', prevImage);
 lightboxNext.addEventListener('click', nextImage);
 zoomInBtn.addEventListener('click', zoomIn);
 zoomOutBtn.addEventListener('click', zoomOut);
+lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
 
-// Close lightbox when clicking outside the image
-lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) {
-        closeLightbox();
-    }
-});
-
-// ============ PAN/DRAG FUNCTIONALITY ============
+/* ===== PAN/DRAG ===== */
 lightboxImg.addEventListener('mousedown', (e) => {
     if (currentZoom > 100) {
         e.preventDefault();
@@ -158,27 +125,18 @@ lightboxImg.addEventListener('mousedown', (e) => {
 });
 
 document.addEventListener('mousemove', (e) => {
-    if (isPanning && currentZoom > 100) {
-        const deltaX = (e.clientX - lastX) * 0.4; // slower
-        const deltaY = (e.clientY - lastY) * 0.4; // slower
-        
-        let newPanX = panX + deltaX;
-        let newPanY = panY + deltaY;
-        
-        // Calculate max pan distance based on zoom level
-        const maxPan = (currentZoom - 100) / 100 * 150; // Scale with zoom
-        
-        // Clamp pan values to keep image within bounds
-        newPanX = Math.max(-maxPan, Math.min(maxPan, newPanX));
-        newPanY = Math.max(-maxPan, Math.min(maxPan, newPanY));
-        
-        panX = newPanX;
-        panY = newPanY;
-        lastX = e.clientX;
-        lastY = e.clientY;
-        
-        lightboxImg.style.transform = `scale(${currentZoom / 100}) translate(${panX}px, ${panY}px)`;
-    }
+    if (!isPanning || currentZoom <= 100) return;
+    
+    const deltaX = (e.clientX - lastX) * 0.4;
+    const deltaY = (e.clientY - lastY) * 0.4;
+    const maxPan = (currentZoom - 100) / 100 * 150;
+    
+    panX = Math.max(-maxPan, Math.min(maxPan, panX + deltaX));
+    panY = Math.max(-maxPan, Math.min(maxPan, panY + deltaY));
+    
+    lastX = e.clientX;
+    lastY = e.clientY;
+    lightboxImg.style.transform = `scale(${currentZoom / 100}) translate(${panX}px, ${panY}px)`;
 });
 
 document.addEventListener('mouseup', () => {
@@ -187,18 +145,10 @@ document.addEventListener('mouseup', () => {
     lightboxImg.style.transition = 'transform 0.2s ease';
 });
 
-// Update cursor on hover when zoomed in
-lightboxImg.addEventListener('mouseenter', () => {
-    if (currentZoom > 100) {
-        lightboxImg.style.cursor = 'grab';
-    }
-});
+lightboxImg.addEventListener('mouseenter', () => { if (currentZoom > 100) lightboxImg.style.cursor = 'grab'; });
+lightboxImg.addEventListener('mouseleave', () => { lightboxImg.style.cursor = 'auto'; });
 
-lightboxImg.addEventListener('mouseleave', () => {
-    lightboxImg.style.cursor = 'auto';
-});
-
-// Keyboard navigation
+/* ===== KEYBOARD NAV ===== */
 document.addEventListener('keydown', (e) => {
     if (!lightbox.classList.contains('active')) return;
     if (e.key === 'ArrowLeft') prevImage();
@@ -208,9 +158,7 @@ document.addEventListener('keydown', (e) => {
     if (e.key === '-') zoomOut();
 });
 
-console.log('Website loaded - Happy Valley Room Rental 🏠');
-
-// ============ PHONE CONTACT MENU ============
+/* ===== PHONE CONTACT MENU ===== */
 const phoneContactBtn = document.getElementById('phone-contact-btn');
 const phoneMenu = document.getElementById('phone-menu');
 
@@ -220,19 +168,14 @@ if (phoneContactBtn && phoneMenu) {
         phoneMenu.style.display = phoneMenu.style.display === 'none' ? 'block' : 'none';
     });
 
-    // Close menu when clicking outside
     document.addEventListener('click', (e) => {
         if (!phoneContactBtn.contains(e.target) && !phoneMenu.contains(e.target)) {
             phoneMenu.style.display = 'none';
         }
     });
 
-    // Close menu when clicking a menu item
-    const menuItems = phoneMenu.querySelectorAll('.contact-menu-item');
-    menuItems.forEach(item => {
-        item.addEventListener('click', () => {
-            phoneMenu.style.display = 'none';
-        });
+    phoneMenu.querySelectorAll('.contact-menu-item').forEach(item => {
+        item.addEventListener('click', () => { phoneMenu.style.display = 'none'; });
     });
 }
 

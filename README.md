@@ -1,225 +1,107 @@
-# Rent My Room in Happy Valley 🏠
+# Rent My Room in Happy Valley
 
-A Gen-Z friendly, mobile-first website to advertise your room in Happy Valley, Bellingham WA. This website features an interactive roommate compatibility quiz and beautiful apartment showcase.
+Room rental landing page with compatibility quiz and image gallery. Mobile-first, Gen-Z focused.
 
-**Live Demo:** Coming soon on Vercel!
+## 📁 Structure
 
----
+```
+├── index.html           # Main landing page
+├── quiz.html            # 8-question compatibility quiz
+├── styles.css           # Main styles (magenta theme)
+├── quiz-styles.css      # Quiz styles
+├── script.js            # Lightbox gallery + smooth scroll
+├── quiz-script.js       # Quiz logic & scoring
+├── vercel.json          # Static site config
+└── images/
+    ├── *.jpg            # 7 gallery images
+    └── quiz-images/     # 8 quiz images
+```
 
 ## ✨ Features
 
-### Main Website (index.html)
-- **Hero Section**: Eye-catching intro with pricing and key details
-- **About**: Apartment location, amenities, and vibe
-- **The Vibe**: Meet the roommates and household culture
-- **How We Actually Live Here**: Daily routines, chore system, living standards
-- **Take a Look Around**: Interactive image gallery with zoom & pan
-- **Requirements**: Clear expectations for roommates
-- **Application Process**: Step-by-step guide to applying
-- **Contact**: Text, call, or DM directly
+- **Landing Page**: Hero, about, vibe, roommate requirements, application steps
+- **Quiz**: 8 questions → compatibility score → text/DM results
+- **Gallery**: Click-to-zoom lightbox with pan & keyboard nav
+- **Responsive**: Mobile-first, works on all devices
+- **Auto-deploy**: Vercel + GitHub = auto-redeploy on push
 
-### Quiz Page (quiz.html)
-- 8-question compatibility assessment
-- Personalized scoring (0-100%)
-- Results: "Perfect Match," "Great Fit," "Maybe," or "Not a Match"
-- Share results via text or DM to Charlotte
-- Mobile-optimized experience
+## 🎨 Colors
 
-### Image Gallery & Lightbox
-- Click any image to open full-screen lightbox
-- Zoom in/out with buttons
-- Drag to pan around zoomed images
-- Navigate with arrow keys or next/prev buttons
-- Smooth, responsive interactions
-
----
-
-## 📁 File Structure
-
-```
-rent-my-room/
-├── index.html              # Main landing page
-├── quiz.html               # Compatibility quiz
-├── styles.css              # Main styles
-├── quiz-styles.css         # Quiz-specific styles
-├── script.js               # Main interactivity
-├── quiz-script.js          # Quiz logic & scoring
-├── vercel.json             # Vercel deployment config
-├── README.md               # This file
-└── images/
-    ├── main-bedroom-view.jpg
-    ├── alt-bedroom-view.jpg
-    ├── kitchen.jpg
-    ├── full-living-room.jpg
-    ├── balcony-view.jpg
-    ├── closet.jpg
-    ├── bookshelf.jpg
-    └── quiz-images/
-        ├── sleep.jpg
-        ├── partners.jpg
-        ├── people-over.jpeg
-        ├── cleaning.jpg
-        ├── chores.jpg
-        ├── conflict.jpg
-        ├── rent.jpg
-        └── smoking.jpg
+```css
+--primary: #c946a0        /* Magenta */
+--secondary: #7c6b8f      /* Purple */
+--accent: #ffd700         /* Gold */
 ```
 
----
-
-## 🎨 Design
-
-- **Color Scheme**: Vibrant magenta (#c946a0) with soft purples
-- **Typography**: Modern fonts (Outfit, Plus Jakarta Sans from Google Fonts)
-- **Mobile-First**: Fully responsive design
-- **Interactive**: Smooth animations, intuitive controls
-- **Accessible**: Clear contrast, semantic HTML, easy navigation
-
----
-
-## 🚀 Quick Deploy to Vercel
-
-### Option 1: GitHub + Vercel (Recommended)
-
-1. **Create a GitHub repo**
-   ```bash
-   git add .
-   git commit -m "Initial commit: Rent My Room website"
-   git branch -M main
-   git remote add origin https://github.com/YOUR_USERNAME/rent-my-room.git
-   git push -u origin main
-   ```
-
-2. **Deploy to Vercel**
-   - Go to [vercel.com](https://vercel.com)
-   - Click "New Project"
-   - Select your `rent-my-room` repository
-   - Vercel will auto-detect it as a static site
-   - Click "Deploy"
-   - Your site is now live! 🎉
-
-3. **Custom Domain (Optional)**
-   - In Vercel project settings, add your custom domain
-   - Follow DNS setup instructions
-
-### Option 2: Vercel CLI (Quick)
+## 🚀 Deploy
 
 ```bash
-npm i -g vercel
-cd /Users/charlotte/rent-my-room
-vercel
+# 1. Push to GitHub
+git push origin main
+
+# 2. Vercel auto-deploys on push
+# Dashboard: https://vercel.com/dashboard
 ```
 
-### Option 3: Netlify (Even Easier)
+## ⚙️ Config Changes
 
-- Go to [netlify.com](https://netlify.com)
-- Drag & drop your entire folder
-- Your site is live instantly!
+**Phone/Instagram** → Update in `index.html` (lines 368, 377) and `quiz-script.js`
 
----
+**Quiz questions** → Edit `quiz.html`, update `totalQuestions` in `quiz-script.js`
 
-## ⚙️ Configuration
+**Images** → Replace files in `images/` and `images/quiz-images/`
 
-### Update Contact Info
+**Colors** → Edit CSS variables in `styles.css` `:root`
 
-Edit these files to change your phone number or Instagram:
+## 🧪 Local Dev
 
-**index.html** (lines 368, 377)
-```html
-<button id="phone-contact-btn" class="contact-info contact-button">206-981-8327</button>
-<a href="https://www.instagram.com/char.lotte.anne/" target="_blank">@char.lotte.anne</a>
-```
-
-**quiz-script.js** (line ~200)
-```javascript
-const phoneNumber = "206-981-8327";
-const instagramUrl = "https://www.instagram.com/char.lotte.anne/";
-```
-
----
-
-## 📸 Adding or Changing Images
-
-### Main Website Gallery
-- Update images in the `images/` folder
-- Update `<img src="images/FILENAME.jpg">` in index.html (lines 231-238)
-
-### Quiz Images
-- Update images in `images/quiz-images/`
-- Change the `src` attributes in quiz.html for each question
-
-### Tips
-- Keep images under 500KB for fast loading
-- Use JPG format for photos (better compression)
-- Images are cached for 1 year after deployment
-
----
-
-## 🧪 Testing Locally
-
-Simply open `index.html` in a browser:
 ```bash
-# macOS
-open /Users/charlotte/rent-my-room/index.html
+# Option 1: Direct
+open index.html
 
-# Or use a local server (Python 3)
-cd /Users/charlotte/rent-my-room
+# Option 2: Local server
 python3 -m http.server 8000
-# Then visit http://localhost:8000
+# Visit http://localhost:8000
 ```
 
----
+## 📊 Quiz Logic
 
-## 🎯 Quiz Scoring
+- 8 questions scored 1-4 points each (max 32)
+- Score converted to 0-100%
+- Results: Perfect (80+), Great (60-79), Maybe (40-59), No (0-39)
+- Personalized based on Charlotte's answers
 
-The quiz evaluates compatibility across:
-- Sleep schedule & daily routines
-- Social habits & guests
-- Cleanliness standards
-- Communication style
-- Financial reliability
-- Household rules (no smoking, no parties)
+## 🔗 Key Elements
 
-Results are personalized based on Charlotte's answers to show fit percentage.
+| Element | File | Line(s) |
+|---------|------|---------|
+| Contact button | index.html | 368 |
+| Instagram link | index.html | 377 |
+| Gallery images | index.html | 231-238 |
+| Quiz image sources | quiz.html | ~60-150 |
+| Scoring logic | quiz-script.js | ~150-200 |
 
----
+## 🐛 Common Issues
 
-## 🐛 Troubleshooting
+- **Images not showing**: Check `images/` folder, use JPG not HEIC
+- **Quiz broken**: Verify `totalQuestions` matches number of questions
+- **Links dead**: Check phone format, Instagram URL is public
+- **JS errors**: Open console (F12), check file paths are correct
 
-### Images not showing after deploy?
-- Check that image paths use forward slashes: `images/photo.jpg` ✓
-- Ensure JPG/JPEG/PNG format (not HEIC on web)
-- Verify files are in the `images/` folder
+## 🔄 Updating
 
-### Quiz results not showing?
-- Open browser console (F12) to check for errors
-- Ensure all 8 questions have selected answers
-- Check that JavaScript is enabled
+```bash
+# Make changes locally
+git add .
+git commit -m "Update: description"
+git push origin main
+# Vercel redeploys automatically (~1 min)
+```
 
-### Links not working?
-- Verify phone number format is correct
-- Check Instagram URL is public
-- Test links locally before deploying
+## 📝 Tech Stack
 
----
-
-## 📝 Customization Ideas
-
-- Add more quiz questions (update totalQuestions in quiz-script.js)
-- Change color scheme (edit CSS variables in styles.css)
-- Add TikTok or Discord links to contact section
-- Create a follow-up form after quiz
-- Add a calendar for tours or interviews
-
----
-
-## 💬 Support
-
-Questions about deployment? 
-- **Vercel Docs**: https://vercel.com/docs
-- **GitHub Pages**: https://pages.github.com/
-- **Netlify**: https://docs.netlify.com/
-
----
-
-**Made with 💕 for finding the perfect roommate!**
+- HTML5 (semantic)
+- CSS3 (Flexbox/Grid, animations)
+- Vanilla JS (no dependencies)
+- Google Fonts (Outfit, Plus Jakarta Sans)
+- Static hosting (Vercel/Netlify/GitHub Pages)
