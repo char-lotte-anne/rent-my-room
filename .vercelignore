@@ -1,0 +1,39 @@
+# Vercel ignore file
+# Files/directories that shouldn't be deployed
+
+# Image formats (use JPG for web, not HEIC)
+*.HEIC
+*.heic
+
+# Node modules
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+.AppleDouble
+.LSOverride
+
+# Git files
+.git
+.gitignore
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
