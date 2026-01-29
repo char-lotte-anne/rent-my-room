@@ -101,7 +101,15 @@ function showResults() {
     const score = calculateScore();
     const resultType = getResultType();
     const { strengths, concerns } = getAnalysis();
-    let html = `<div class="result-badge ${resultType}"></div>`;
+    
+    let imageSrc = 'images/quiz-images/bad-quiz-result.jpg';
+    if (resultType === 'perfect' || resultType === 'great') {
+        imageSrc = 'images/quiz-images/good-quiz-result.jpg';
+    } else if (resultType === 'okay') {
+        imageSrc = 'images/quiz-images/okay-quiz-result.jpg';
+    }
+    
+    let html = `<img src="${imageSrc}" alt="Quiz result" class="result-badge ${resultType}">`;
 
     if (resultType === 'perfect') {
         html += `<h2 class="result-title">🎉 OMG YES! This Is It!</h2>
