@@ -105,3 +105,4 @@ git push origin main
 - Vanilla JS (no dependencies)
 - Google Fonts (Outfit, Plus Jakarta Sans)
 - Static hosting (Vercel/Netlify/GitHub Pages)
+# Fresh commit with correct email
