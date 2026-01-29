@@ -117,6 +117,9 @@ function showResults() {
     img.src = imageSrc;
     img.alt = 'Quiz result';
     img.className = `result-badge ${resultType}`;
+    console.log('Creating image with src:', imageSrc);
+    img.onerror = function() { console.error('Image failed to load:', imageSrc); };
+    img.onload = function() { console.log('Image loaded successfully:', imageSrc); };
     resultCard.appendChild(img);
 
     // Create title and description
