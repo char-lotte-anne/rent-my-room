@@ -573,12 +573,22 @@ a:hover {
     border: 2px solid var(--border-color);
     text-align: center;
     transition: all 0.3s ease;
+    overflow: hidden;
 }
 
 .roommate-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 15px 35px rgba(201, 70, 160, 0.15);
     border-color: var(--primary);
+}
+
+.roommate-photo {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    display: block;
 }
 
 .roommate-avatar {
