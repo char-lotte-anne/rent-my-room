@@ -1,6 +1,10 @@
 # Rent My Room in Happy Valley
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20Site-pink?style=for-the-badge)](https://rent-my-room-happy-valley.vercel.app)
+
 Room rental landing page with compatibility quiz and image gallery. Mobile-first, Gen-Z focused.
+
+**[🏠 Live Site](https://rent-my-room-happy-valley.vercel.app)** | Built for finding the perfect roommate in Happy Valley, Bellingham WA
 
 ## 📁 Structure
 
