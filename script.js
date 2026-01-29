@@ -1,3 +1,36 @@
+/* ===== ROOM SELECTOR ===== */
+const roomOptions = document.querySelectorAll('.room-option');
+const heroImage = document.getElementById('hero-image');
+const priceTag = document.getElementById('price-tag');
+
+const roomData = {
+    charlotte: {
+        image: 'images/main-bedroom-view.jpg',
+        alt: 'Cozy bedroom with natural light',
+        price: '$625'
+    },
+    other: {
+        image: 'images/cheaper-room.jpg',
+        alt: 'Spacious room with direct bathroom access',
+        price: '$575'
+    }
+};
+
+roomOptions.forEach(option => {
+    option.addEventListener('click', () => {
+        const room = option.dataset.room;
+        
+        // Update active state
+        roomOptions.forEach(o => o.classList.remove('active'));
+        option.classList.add('active');
+        
+        // Update hero image and price
+        heroImage.src = roomData[room].image;
+        heroImage.alt = roomData[room].alt;
+        priceTag.innerHTML = `${roomData[room].price}<span>/mo</span>`;
+    });
+});
+
 /* ===== SMOOTH SCROLL ===== */
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {

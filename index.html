@@ -27,14 +27,27 @@
         <div class="hero-content">
             <h1>Room for Rent<br><span class="highlight">Happy Valley</span></h1>
             <p class="subtitle">One bedroom in a welcoming 4bed/2bath apartment near WWU<br>Ready for a chill, clean, and communicative living situation? Let's talk.</p>
+            
+            <!-- Room Selector -->
+            <div class="room-selector">
+                <button class="room-option active" data-room="charlotte">
+                    <span class="room-name">Charlotte's Room</span>
+                    <span class="room-price">$625/mo</span>
+                </button>
+                <button class="room-option" data-room="other">
+                    <span class="room-name">Other Room</span>
+                    <span class="room-price">$575/mo</span>
+                </button>
+            </div>
+
             <div class="hero-cta">
                 <a href="quiz.html" class="btn btn-primary">🎯 Take the Compatibility Quiz!</a>
                 <a href="#vibe" class="btn btn-secondary">Get to Know Us</a>
             </div>
         </div>
         <div class="hero-image-placeholder">
-            <img src="images/main-bedroom-view.jpg" alt="Cozy bedroom with natural light" class="hero-image">
-            <div class="price-tag">$625<span>/mo</span></div>
+            <img id="hero-image" src="images/main-bedroom-view.jpg" alt="Cozy bedroom with natural light" class="hero-image">
+            <div class="price-tag" id="price-tag">$625<span>/mo</span></div>
             <p class="price-details">W/S/G Included<br/>April 1 - July 17, 2026</p>
         </div>
     </section>
