@@ -175,3 +175,4 @@ function showResults() {
 
 showQuestion(0);
 
+//public
