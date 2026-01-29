@@ -746,8 +746,27 @@ a:hover {
         grid-template-columns: 1fr;
     }
 
+    .detail-card {
+        padding: 15px;
+    }
+
+    .detail-card h3 {
+        font-size: 0.95rem;
+        margin-bottom: 8px;
+    }
+
+    .detail-card p {
+        font-size: 0.85rem;
+        margin-bottom: 6px;
+    }
+
     .chore-chart {
         grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .chore-item {
+        padding: 10px;
     }
 
     .furniture-grid {
@@ -1124,6 +1143,18 @@ a:hover {
     .requirements {
         grid-template-columns: 1fr;
     }
+
+    .req-item {
+        padding: 12px;
+    }
+
+    .req-item h4 {
+        font-size: 0.9rem;
+    }
+
+    .req-item p {
+        font-size: 0.8rem;
+    }
 }
 
 /* ============ INTERVIEW SECTION ============ */
@@ -1349,6 +1380,25 @@ a:hover {
     .apply-process {
         grid-template-columns: 1fr;
     }
+
+    .process-step {
+        padding: 15px;
+    }
+
+    .step-number {
+        width: 36px;
+        height: 36px;
+        font-size: 1.2rem;
+    }
+
+    .process-step h3 {
+        font-size: 1rem;
+    }
+
+    .process-step p {
+        font-size: 0.85rem;
+    }
+}
 
     .apply-cta {
         padding: 35px 25px;
