@@ -102,11 +102,15 @@ function showResults() {
     const resultType = getResultType();
     const { strengths, concerns } = getAnalysis();
     
-    let imageSrc = 'images/quiz-images/bad-quiz-result.jpg';
+    // Randomly select from 3 image variants for each result type
+    const randomVariant = Math.floor(Math.random() * 3) + 1; // 1, 2, or 3
+    const variantSuffix = randomVariant === 1 ? '' : `-${randomVariant}`; // First one has no suffix
+    
+    let imageSrc = `images/quiz-images/bad-quiz-result${variantSuffix}.jpg`;
     if (resultType === 'perfect' || resultType === 'great') {
-        imageSrc = 'images/quiz-images/good-quiz-result.jpg';
+        imageSrc = `images/quiz-images/good-quiz-result${variantSuffix}.jpg`;
     } else if (resultType === 'okay') {
-        imageSrc = 'images/quiz-images/okay-quiz-result.jpg';
+        imageSrc = `images/quiz-images/okay-quiz-result${variantSuffix}.jpg`;
     }
 
     // Clear result card
